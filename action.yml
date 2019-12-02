@@ -5,4 +5,4 @@ inputs:
     description: 'Version of the app'
 runs:
   using: 'node12'
-  main: 'src/index.js'
+  main: 'lib/index.js'
