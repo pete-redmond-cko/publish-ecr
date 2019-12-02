@@ -6,8 +6,8 @@ const DOCKER_FILE='Dockerfile'
 async function run() {
   
   try {
-    const AWS_ACCESS_KEY_ID = core.getInput('access-key-id', { required: true });
-    const AWS_SECRET_ACCESS_KEY = core.getInput('secret-access-key', { required: true });
+    const AWS_ACCESS_KEY_ID = core.getInput('aws-access-key-id', { required: true });
+    const AWS_SECRET_ACCESS_KEY = core.getInput('aws-secret-access-key', { required: true });
     const APP_NAME =  core.getInput('image', { required: true })
     const APP_VERSION = core.getInput('app-version', {required: true });
     const ECR_PATH = core.getInput('ecr-path', {required: true });
