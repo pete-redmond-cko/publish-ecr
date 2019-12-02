@@ -16,12 +16,19 @@ async function run() {
 
     let dockerBuildCommand = `docker build --build-arg version=${APP_VERSION}`;
     dockerBuildCommand = `${dockerBuildCommand} -t ${APP_NAME} -t ${APP_NAME}:${APP_VERSION}`;
-    dockerBuildCommand = `${dockerBuildCommand} -t ${ECR_PATH}/:${APP_NAME}:${APP_VERSION} -t ${ECR_PATH}/${APP_NAME}:latest -f ${DOCKER_FILE} .`;
+    dockerBuildCommand = `${dockerBuildCommand} -t ${ECR_PATH}/${APP_NAME}:${APP_VERSION} -t ${ECR_PATH}/${APP_NAME}:latest -f ${DOCKER_FILE} .`;
     
     const dockerPushCommand = `docker push ${ECR_PATH}/${APP_NAME}`;
     const publishCommand = `${awsLoginCommand} && ${dockerBuildCommand} && ${dockerPushCommand}`;
 
     console.log(publishCommand);
+
+    runCmd(awsLoginCommand);
+
+    const accountData = runCmd(`aws sts get-caller-identity --output json`);
+    const awsAccountId = JSON.parse(accountData).Account;
+
+    console.log(awsAccountId);
 
     function runCmd(cmd) {
       return execSync(cmd, {
