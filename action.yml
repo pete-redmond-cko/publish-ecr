@@ -1,8 +1,16 @@
 name: 'publish-image'
 description: 'build and publish the image to ECR'
 inputs:
-  version: 
-    description: 'Version of the app'
+  AWS_ACCESS_KEY_ID: 
+    description: 'AWS_ACCESS_KEY_ID'
+  AWS_SECRET_ACCESS_KEY: 
+    description: 'AWS_SECRET_ACCESS_KEY'
+  APP_NAME: 
+    description: 'APP_NAME'
+  APP_VERSION: 
+    description: 'APP_VERSION'
+  ECR_PATH: 
+    description: 'ECR_PATH'
 runs:
   using: 'node12'
   main: 'lib/index.js'
