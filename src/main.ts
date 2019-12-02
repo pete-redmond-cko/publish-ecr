@@ -23,13 +23,6 @@ async function run() {
 
     console.log(publishCommand);
 
-    runCmd(awsLoginCommand);
-
-    const accountData = runCmd(`aws sts get-caller-identity --output json`);
-    const awsAccountId = JSON.parse(accountData).Account;
-
-    console.log(awsAccountId);
-
     function runCmd(cmd) {
       return execSync(cmd, {
           shell: '/bin/bash',
