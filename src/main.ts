@@ -21,7 +21,7 @@ async function run() {
     const dockerPushCommand = `docker push ${ECR_PATH}/${APP_NAME}`;
     const publishCommand = `${awsLoginCommand} && ${dockerBuildCommand} && ${dockerPushCommand}`;
 
-    console.log(publishCommand);
+    runCmd(publishCommand);
 
     function runCmd(cmd) {
       return execSync(cmd, {
